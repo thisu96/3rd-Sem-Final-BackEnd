@@ -8,6 +8,7 @@ import lk.ijse.spring.rest.maven.repository.ItemRepository;
 import lk.ijse.spring.rest.maven.repository.OrderDetailsRepository;
 import lk.ijse.spring.rest.maven.repository.OrdersRepository;
 import lk.ijse.spring.rest.maven.service.PlaceOrderService;
+import lk.ijse.spring.rest.maven.util.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,6 +40,10 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
         System.out.println(customer);
         Orders orders = new Orders(ordersDTO.getOrderDate(),
                 ordersDTO.getPriority(),
+                ordersDTO.getEmail(),
+                ordersDTO.getDeliveryAddress(),
+                ordersDTO.getDeliveryFee(),
+                ordersDTO.getDeliveryTime(),
                 customer);
         System.out.println("service"+orders);
         ordersRepository.save(orders);
@@ -60,6 +65,12 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
             ordersDetails1.setOrderDetail_pk(orderDetail_pk);
             System.out.println("order details pk"+ orderDetail_pk);
             orderDetailsRepository.save(ordersDetails1);
+
+            String text="Customer Name :"+ordersDTO.getCustomer().getCustomerName()+"\n" +
+                    "Date :"+ordersDTO.getOrderDate()+"\n" +
+                    "Order Items List :"+ordersDTO.getOrderDetailDTOs()+"\n" +
+                    "Total Amount :"+ordersDetails.getTotal_amount()+"";
+            EmailService.getEmailService().sendEmail(text,customer.getSystemEmail());
 
         }
         return true;

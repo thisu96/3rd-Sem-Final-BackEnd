@@ -11,8 +11,8 @@ public class Customer {
     private String address;
     private String contact;
     private String email;
+    private String systemEmail;
     private String password;
-    private String confirmPassword;
 
     public Customer() {
     }
@@ -22,14 +22,22 @@ public class Customer {
         this.password = password;
     }
 
-    public Customer(String customerName, String userName, String address, String contact, String email, String password, String confirmPassword) {
-        this.customerName = customerName;
+    public Customer(String userName, String customerName, String address, String contact, String email, String systemEmail, String password) {
         this.userName = userName;
+        this.customerName = customerName;
         this.address = address;
         this.contact = contact;
         this.email = email;
+        this.systemEmail = systemEmail;
         this.password = password;
-        this.confirmPassword = confirmPassword;
+    }
+
+    public String getSystemEmail() {
+        return systemEmail;
+    }
+
+    public void setSystemEmail(String systemEmail) {
+        this.systemEmail = systemEmail;
     }
 
     public String getCustomerName() {
@@ -80,24 +88,17 @@ public class Customer {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
+                "userName='" + userName + '\'' +
                 ", customerName='" + customerName + '\'' +
-                ", userName='" + userName + '\'' +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +
+                ", systemEmail='" + systemEmail + '\'' +
                 ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }
 }
+

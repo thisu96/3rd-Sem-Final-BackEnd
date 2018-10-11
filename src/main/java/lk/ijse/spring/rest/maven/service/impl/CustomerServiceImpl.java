@@ -31,8 +31,8 @@ public class CustomerServiceImpl implements CustomerService {
                     customer.getAddress(),
                     customer.getContact(),
                     customer.getEmail(),
-                    customer.getPassword(),
-                    customer.getConfirmPassword());
+                    customer.getSystemEmail(),
+                    customer.getPassword());
             alCustomers.add(customerDTO);
         }
         return alCustomers;
@@ -46,8 +46,8 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.getAddress(),
                 customer.getContact(),
                 customer.getEmail(),
-                customer.getPassword(),
-                customer.getConfirmPassword());
+                customer.getSystemEmail(),
+                customer.getPassword());
         return customerDTO;
     }
 
@@ -66,8 +66,8 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.getAddress(),
                 customer.getContact(),
                 customer.getEmail(),
-                customer.getPassword(),
-                customer.getConfirmPassword());
+                customer.getSystemEmail(),
+                customer.getPassword());
         customerRepository.save(customer1);
         return true;
     }
