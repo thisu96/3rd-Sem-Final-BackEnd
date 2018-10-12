@@ -1,6 +1,7 @@
 package lk.ijse.spring.rest.maven.service.impl;
 
 import lk.ijse.spring.rest.maven.dto.OrderDetailsDTO;
+import lk.ijse.spring.rest.maven.dto.OrderListDTO;
 import lk.ijse.spring.rest.maven.dto.OrdersDTO;
 import lk.ijse.spring.rest.maven.entity.*;
 import lk.ijse.spring.rest.maven.repository.CustomerRepository;
@@ -66,9 +67,15 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
             System.out.println("order details pk"+ orderDetail_pk);
             orderDetailsRepository.save(ordersDetails1);
 
+            OrderListDTO orderListDTO = new OrderListDTO();
+
             String text="Customer Name :"+ordersDTO.getCustomer().getCustomerName()+"\n" +
                     "Date :"+ordersDTO.getOrderDate()+"\n" +
-                    "Order Items List :"+ordersDTO.getOrderDetailDTOs()+"\n" +
+                    "Item Name :"+ordersDetails.getItem().getItemName()+"\n"+
+                    "Order Qty :"+ordersDetails.getOrder_qty()+"\n"+
+                    "Delivery Time :"+ordersDTO.getDeliveryTime()+"\n"+
+                    "Delivery Address :"+ordersDTO.getDeliveryAddress()+"\n"+
+                    "Deliver Fee :"+ordersDTO.getDeliveryFee()+"\n"+
                     "Total Amount :"+ordersDetails.getTotal_amount()+"";
             EmailService.getEmailService().sendEmail(text,customer.getSystemEmail());
 

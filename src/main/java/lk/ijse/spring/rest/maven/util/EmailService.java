@@ -37,7 +37,7 @@ public class EmailService {
             props.setProperty("mail.smtp.starttls.enable", "true");
 
             Authenticator auth = new EmailService.SMTPAuthenticator("\n" +
-                    "stvegmart@gmail.com", "stvegmart@1996");
+                    "vegmartorders@gmail.com", "vegmartorders@96");
 
             Session session = Session.getInstance(props, auth);
 
@@ -45,7 +45,7 @@ public class EmailService {
             msg.setText(text);
             msg.setSubject(subject);
 
-            msg.setFrom(new InternetAddress("stvegmart@gmail.com"));
+            msg.setFrom(new InternetAddress("webphpjava@gmail.com"));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress));
             Transport.send(msg);
 
